@@ -137,7 +137,7 @@ try
     }
     else
     {
-        Write-Host "JDK not found. Skipping Install. To install download JDK to $downloadFolder and run script again"
+        Write-Host "JDK not found. Skipping Install. To install download JDK to $downloadFolder from http://www.oracle.com/technetwork/java/javase/downloads/index.html and run script again."
     }
     
     ###########################################################
@@ -176,7 +176,7 @@ try
     }
     else
     {
-        Write-Host "SQL JDBC not found. Skipping Install. To install download SQL JDBC driver to $downloadFolder and run script again"
+        Write-Host "SQL JDBC not found. Skipping Install. To install download SQL JDBC driver to $downloadFolder from https://msdn.microsoft.com/en-us/sqlserver/aa937724.aspx and run script again."
     }
     
     ###########################################################
