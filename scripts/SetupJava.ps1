@@ -202,7 +202,7 @@ try
         if($env:Path.Contains("JAVA_HOME") -eq $false)
         {
             Write-Host "Adding JAVA_HOME to path"
-            [System.Environment]::SetEnvironmentVariable("PATH", $Env:Path + ";%JAVA_HOME%\bin;%M2%", "Machine")
+            [System.Environment]::SetEnvironmentVariable("PATH", "%JAVA_HOME%\bin;%M2%;" + $Env:Path, "Machine")
         }
         else
         {
