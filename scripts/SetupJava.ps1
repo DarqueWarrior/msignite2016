@@ -1,8 +1,13 @@
-﻿cls
+﻿###############################################################################
+# Download JDK and Microsoft SQL Server JDBC driver into $downloadFolder.
+# Run script in elevated PowerShell to install JDK, JRE, JDBC, Maven, Tomcat
+# and Eclipse to $baseFolder
 
+cls
+
+$skipEnvVars = $false
 $baseFolder = "c:\java"
 $downloadFolder = "c:\temp"
-$skipEnvVars = $false
 
 $mavenUri = "http://ftp.wayne.edu/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip"
 $tomcatUri = "http://mirror.reverse.net/pub/apache/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30-windows-x64.zip"
