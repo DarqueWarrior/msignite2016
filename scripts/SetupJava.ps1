@@ -1,4 +1,13 @@
-﻿cls
+﻿<#
+Download version 4.2 of the Microsoft JDBC Driver for SQL Server from
+https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774
+and store in c:\temp
+
+Download the latest JDC from 
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+and store in c:\temp
+#>
+cls
 
 $baseFolder = "c:\java"
 $downloadFolder = "c:\temp"
