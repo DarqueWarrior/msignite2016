@@ -12,15 +12,18 @@
 # Download the latest JDC from 
 # http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
+[CmdletBinding()]
+Param(
+    [switch]$skipEnvVars,
+
+    # The folder where all the components will be installed
+    [string]$baseFolder = "c:\java",
+
+    # The folder where the files will be downloaded to and installed from.
+    [string]$downloadFolder = "c:\temp"
+)
+
 cls
-
-$skipEnvVars = $false
-
-# The folder where all the components will be installed
-$baseFolder = "c:\java"
-
-# The folder where the files will be downloaded to and installed from.
-$downloadFolder = "c:\temp"
 
 # You can either download the desired versions into $downloadFolder or verify
 # the URIs below.  The script will not download the file if it already exists
@@ -242,7 +245,7 @@ SHOW_WORKSPACE_SELECTION_DIALOG=true
 eclipse.preferences.version=1
 "@
 
-    New-Item "$baseFolder\eclipse\configuration\.settings" -ItemType Directory -Force
+    New-Item "$baseFolder\eclipse\configuration\.settings" -ItemType Directory -Force | Out-Null
     Set-Content -Path "$baseFolder\eclipse\configuration\.settings\org.eclipse.ui.ide.prefs" -Value $contents -Force
 } 
 finally 
