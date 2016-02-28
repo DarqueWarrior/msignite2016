@@ -2,15 +2,31 @@
 # Download JDK and Microsoft SQL Server JDBC driver into $downloadFolder.
 # Run script in elevated PowerShell to install JDK, JRE, JDBC, Maven, Tomcat
 # and Eclipse to $baseFolder
+#
+# Because you have to accept a license you must download the following items
+# yourself.
+#
+# Download version 4.2 of the Microsoft JDBC Driver for SQL Server from
+# https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11774
+#
+# Download the latest JDC from 
+# http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 cls
 
 $skipEnvVars = $false
+
+# The folder where all the components will be installed
 $baseFolder = "c:\java"
+
+# The folder where the files will be downloaded to and installed from.
 $downloadFolder = "c:\temp"
 
+# You can either download the desired versions into $downloadFolder or verify
+# the URIs below.  The script will not download the file if it already exists
+# in $downloadFolder.
 $mavenUri = "http://ftp.wayne.edu/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip"
-$tomcatUri = "http://mirror.reverse.net/pub/apache/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30-windows-x64.zip"
+$tomcatUri = "http://ftp.wayne.edu/apache/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.zip"
 $eclipseUri = "http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/mars/1/eclipse-jee-mars-1-win32-x86_64.zip"
 
 ###############################################################################
@@ -212,7 +228,22 @@ try
 
     ###########################################################
     Write-Host "Opening Eclipse folder"
-    start C:\java\eclipse
+    start "$baseFolder\eclipse"
+    
+    ##
+    Write-Host "Setting Workspace folder"
+    $workspace = $baseFolder -replace ":", "\:\"
+
+    $contents = @"
+MAX_RECENT_WORKSPACES=5
+RECENT_WORKSPACES=$workspace\\workspace
+RECENT_WORKSPACES_PROTOCOL=3
+SHOW_WORKSPACE_SELECTION_DIALOG=true
+eclipse.preferences.version=1
+"@
+
+    New-Item "$baseFolder\eclipse\configuration\.settings" -ItemType Directory -Force
+    Set-Content -Path "$baseFolder\eclipse\configuration\.settings\org.eclipse.ui.ide.prefs" -Value $contents -Force
 } 
 finally 
 {
